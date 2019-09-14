@@ -7,9 +7,13 @@ var (
 	s       string
 )
 
+func printSumAndWord(a, b, c int, s string) string {
+	return fmt.Sprintf("%d %s", a+b+c, s)
+}
+
 func main() {
 	fmt.Scanf("%d", &a)
 	fmt.Scanf("%d %d", &b, &c)
 	fmt.Scanf("%s", &s)
-	fmt.Printf("%d %s\n", a+b+c, s)
+	fmt.Println(printSumAndWord(a, b, c, s))
 }
