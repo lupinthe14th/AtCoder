@@ -1,7 +1,6 @@
 package abc087b
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -15,11 +14,10 @@ var cases = []struct {
 
 func TestCoin(t *testing.T) {
 	for _, tt := range cases {
-		t.Run(fmt.Sprintln(tt.a, tt.b, tt.c, tt.x), func(t *testing.T) {
-			actual := coins(tt.a, tt.b, tt.c, tt.x)
-			if actual != tt.want {
-				t.Errorf("%d, want: %d", actual, tt.want)
-			}
-		})
+		actual := coins(tt.a, tt.b, tt.c, tt.x)
+		if actual != tt.want {
+			t.Errorf("%d, want: %d", actual, tt.want)
+		}
+
 	}
 }
