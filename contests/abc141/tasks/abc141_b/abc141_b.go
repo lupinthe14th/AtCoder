@@ -3,7 +3,6 @@ package main
 import (
 	"errors"
 	"fmt"
-	"log"
 	"strings"
 )
 
@@ -21,9 +20,7 @@ func isTapDanceEasy(s string) bool {
 			odds = append(odds, char)
 		}
 		odd := strings.Join(odds, "")
-		log.Printf("odd: %s", odd)
 		even := strings.Join(evens, "")
-		log.Printf("even: %s", even)
 		if strings.Contains(odd, "L") || strings.Contains(even, "R") {
 			return false
 		}
