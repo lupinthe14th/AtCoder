@@ -34,6 +34,7 @@ func main() {
 	fmt.Scan(&s)
 	if isTapDanceEasy(s) {
 		fmt.Println("Yes")
+	} else {
+		fmt.Println("No")
 	}
-	fmt.Println("No")
 }
