@@ -7,7 +7,7 @@ import (
 )
 
 func isTapDanceEasy(s string) bool {
-	if len(s) > 1 && len(s) < 100 {
+	if len(s) >= 1 && len(s) <= 100 {
 		odds := make([]string, 0)
 		evens := make([]string, 0)
 		sl := strings.Split(s, "")

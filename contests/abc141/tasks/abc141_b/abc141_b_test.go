@@ -9,9 +9,11 @@ var cases = []struct {
 	input string
 	want  bool
 }{
+	{input: "U", want: true},
 	{input: "RUDLUDR", want: true},
 	{input: "DULL", want: false},
 	{input: "UUUUUUUUUUUUUUU", want: true},
+	{input: "UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU", want: true},
 	{input: "ULURU", want: false},
 	{input: "RDULULDURURLRDULRLR", want: true},
 }
