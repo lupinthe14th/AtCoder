@@ -15,7 +15,11 @@ func connectionAndDisconnection(s string, k int) int {
 	for i := 1; i < len(r); i++ {
 		if r[j] == r[i] {
 			counter++
-			r[i] = r[i] + 1
+			if i+1 < len(r) && r[i+1] == r[i]+1 {
+				r[i] = r[i] + 2
+			} else {
+				r[i] = r[i] + 1
+			}
 		}
 		j++
 	}
