@@ -6,6 +6,9 @@ import (
 
 func connectionAndDisconnection(s string, k int) int {
 
+	if len(s) == 1 {
+		return k / 2
+	}
 	r := []rune(s)
 	counter := 0
 	j := 0
