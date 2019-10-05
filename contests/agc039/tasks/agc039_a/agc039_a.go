@@ -1,4 +1,4 @@
-package agc039a
+package main
 
 import (
 	"fmt"
