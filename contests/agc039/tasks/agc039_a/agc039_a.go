@@ -23,6 +23,9 @@ func connectionAndDisconnection(s string, k int) int {
 		}
 		j++
 	}
+	if counter == 0 && r[0] == r[len(r)-1] {
+		return k / 2
+	}
 	return counter * k
 }
 
