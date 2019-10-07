@@ -22,6 +22,7 @@ var cases = []struct {
 	{id: 5, input: input{s: "iij", k: 2}, want: 2},
 	{id: 6, input: input{s: "iabcdefhi", k: 2}, want: 1},
 	{id: 7, input: input{s: "iabcdefhi", k: 3}, want: 2},
+	{id: 8, input: input{s: "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii", k: 3}, want: 61},
 }
 
 func TestConnectionAndDisconnection(t *testing.T) {

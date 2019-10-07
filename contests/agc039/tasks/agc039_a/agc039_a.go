@@ -2,31 +2,45 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 func connectionAndDisconnection(s string, k int) int {
 
-	if len(s) == 1 {
-		return k / 2
+	// all the characters in S are the same pattern
+	m := make(map[rune]int, 26)
+
+	for _, c := range s {
+		m[c]++
 	}
+	if len(m) == 1 {
+		return (len(s) * k) / 2
+	}
+
+	// If these characters are the same pattern
 	r := []rune(s)
-	counter := 0
-	j := 0
-	for i := 1; i < len(r); i++ {
-		if r[j] == r[i] {
-			counter++
-			if i+1 < len(r) && r[i+1] == r[i]+1 {
-				r[i] = r[i] + 2
-			} else {
-				r[i] = r[i] + 1
+	cost := 0
+	if s[0] == s[len(s)-1] {
+		for i := 1; i < len(r); i++ {
+			if r[i-1] == r[i] {
+				cost++
+				r[i] = '#'
 			}
 		}
-		j++
+		l := string(s[0])
+		head := len(s) - len(strings.TrimLeft(s, l))
+		tail := len(s) - len(strings.TrimRight(s, l))
+		return cost*k - (head/2+tail/2-(head+tail)/2)*(k-1)
+
 	}
-	if counter == 0 && r[0] == r[len(r)-1] {
-		return k / 2
+	// If the first and last characters of S are different pattern.
+	for i := 1; i < len(r); i++ {
+		if r[i-1] == r[i] {
+			cost++
+			r[i] = '#'
+		}
 	}
-	return counter * k
+	return cost * k
 }
 
 func main() {
