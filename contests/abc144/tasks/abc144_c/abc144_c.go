@@ -2,19 +2,22 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 func walkOnMultiplicationTable(num int) int {
 
-	l := num
-	x := 1
-	for i := 1; i < l; i++ {
+	div := 0
+	for i := int(math.Sqrt(float64(num))); i > 1; i-- {
 		if num%i == 0 {
-			x = i
+			div = i
+			break
 		}
-		l = num / i
 	}
-	return x + num/x - 2
+	if div == 0 {
+		return num - 1
+	}
+	return div + num/div - 2
 
 }
 
