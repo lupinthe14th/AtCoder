@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"os"
 	"sort"
 	"strconv"
@@ -10,8 +11,8 @@ import (
 )
 
 type Perm struct {
-	idx int
 	num int
+	idx int
 }
 
 type Perms []Perm
@@ -29,90 +30,81 @@ func (p Perms) Swap(i, j int) {
 }
 
 func swaps(n int, a, b []int) bool {
-	// まず巡回置換 (p1, ..., pN ) を Ap1 ≦ Ap2 ≦ ... ≦ ApN となるようにとる
-	ap := make([]int, 0, n)
-	for _, v := range a {
-		ap = append(ap, v)
-	}
-	sort.Ints(ap)
-	bp := make([]int, 0, n)
-	for _, v := range b {
-		bp = append(bp, v)
-	}
-	sort.Ints(bp)
-
-	// このとき Api ≦ Bi(i = 1, ..., N ) が成り立たなければ、1 つめの条件をみたす (p1 , ..., pN ) が存在しないので、false
+	ap := make(Perms, n)
+	bp := make(Perms, n)
 	for i := 0; i < n; i++ {
-		if ap[i] > bp[i] {
+		ap[i] = Perm{idx: i, num: a[i]}
+		bp[i] = Perm{idx: i, num: b[i]}
+	}
+	sort.Sort(ap)
+	sort.Sort(bp)
+
+	for i := 0; i < n; i++ {
+		if ap[i].num > bp[i].num {
 			return false
 		}
-
 	}
 
-	// Api ≦ Bi(i = 1,...,N) となる場合
-	// 巡回置換(p1,...,pN)をサイクルに分解したときに、2つ以上のサイクルに分解されるならば、true
-	// N-1回あればできるやつ
-	// 目標位置をswapできる場所があれば、達成可能
 	for i := 0; i < n-1; i++ {
-		if ap[i+1] <= bp[i] {
+		if ap[i+1].num <= bp[i].num {
 			return true
 		}
 	}
 
-	// この時点で、Aは相異なり、目標インデックスも1つに決まる
-	// a をsortすると順序が変わってしまうので最初に処理する
-	// 時間計算量が増える。。。
-	perms := make([]Perm, n)
-	for i, v := range a {
-		perms[i] = Perm{idx: i, num: v}
+	p := make([]int, n)
+	for i := 0; i < n; i++ {
+		p[ap[i].idx] = bp[i].idx
 	}
 
-	sort.Sort(Perms(perms))
-
-	p := make([]int, 0, n)
-	for _, perm := range perms {
-		p = append(p, perm.idx)
-	}
-	count := 0
-	x := 0
-	for x != 0 {
-		count++
-		x = p[x]
+	s := make(map[int]struct{})
+	for i, m := 0, 0; i < n; i++ {
+		s[m] = struct{}{}
+		m = p[m]
 	}
 
-	if count <= n-2 {
+	if len(s) < n {
 		return true
 	}
 	return false
 }
 
 func main() {
-	sc := bufio.NewScanner(os.Stdin)
+	reader := bufio.NewReaderSize(os.Stdin, 1024*1024)
 
-	var n int
-	if sc.Scan() {
-		n, _ = strconv.Atoi(sc.Text())
-	}
-
+	n, err := strconv.Atoi(readLine(reader))
+	checkError(err)
 	a := make([]int, n)
-	if sc.Scan() {
-		ss := strings.Split(sc.Text(), " ")
-		for i := range ss {
-			a[i], _ = strconv.Atoi(ss[i])
-		}
+	ss := strings.Split(readLine(reader), " ")
+	for i := range ss {
+		a[i], err = strconv.Atoi(ss[i])
+		checkError(err)
 	}
 
 	b := make([]int, n)
-	if sc.Scan() {
-		ss := strings.Split(sc.Text(), " ")
-		for i := range ss {
-			b[i], _ = strconv.Atoi(ss[i])
-		}
+	ss = strings.Split(readLine(reader), " ")
+	for i := range ss {
+		b[i], err = strconv.Atoi(ss[i])
+		checkError(err)
 	}
 
 	if swaps(n, a, b) {
 		fmt.Println("Yes")
 	} else {
 		fmt.Println("No")
+	}
+}
+
+func readLine(reader *bufio.Reader) string {
+	str, _, err := reader.ReadLine()
+	if err == io.EOF {
+		return ""
+	}
+
+	return strings.TrimRight(string(str), "\r\n")
+}
+
+func checkError(err error) {
+	if err != nil {
+		panic(err)
 	}
 }
