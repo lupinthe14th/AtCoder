@@ -1,6 +1,7 @@
 // SeeAlso:
 // - https://img.atcoder.jp/abc145/editorial.pdf
 // - http://drken1215.hatenablog.com/entry/2018/06/08/210000
+// - https://atcoder.jp/contests/abc145/submissions/8479589
 package main
 
 import (
@@ -10,8 +11,6 @@ import (
 const MAX = 1000000
 const MOD = 1000000007
 
-var fac = make([]int, MAX)
-var finv = make([]int, MAX)
 var inv = make([]int, MAX)
 
 func knight(x, y int) int {
@@ -33,17 +32,28 @@ func knight(x, y int) int {
 
 // テーブルを作る前処理
 func cominit() {
-	fac[0] = 1
-	fac[1] = 1
-
-	finv[0] = 1
-	finv[1] = 1
 	inv[1] = 1
 	for i := 2; i < MAX; i++ {
-		fac[i] = fac[i-1] * i % MOD
 		inv[i] = MOD - inv[MOD%i]*(MOD/i)%MOD
-		finv[i] = finv[i-1] * inv[i] % MOD
 	}
+}
+
+func finv(x int) int {
+	ans := 1
+
+	for i := 2; i <= x; i++ {
+		ans = ans * inv[i] % MOD
+	}
+	return ans
+}
+
+func fact(x int) int {
+	ans := 1
+
+	for i := 2; i <= x; i++ {
+		ans = ans * i % MOD
+	}
+	return ans
 }
 
 // 二項係数計算
@@ -55,7 +65,7 @@ func com(n, k int) int {
 		return 0
 	}
 	cominit()
-	return fac[n] * (finv[k] * finv[n-k] % MOD) % MOD
+	return fact(n) * (finv(k) * finv(n-k) % MOD) % MOD
 }
 
 func main() {
