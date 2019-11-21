@@ -10,7 +10,11 @@ import (
 )
 
 func go2School(n int, l []int) []int {
-	return []int{1, 2, 3}
+	stack := make([]int, n)
+	for i, v := range l {
+		stack[v-1] = i + 1
+	}
+	return stack
 }
 
 func main() {
