@@ -9,19 +9,27 @@ import (
 	"strings"
 )
 
-const MOD = 1000000007
+const MOD = 1e9 + 7
 
 func xorSum4(n int, a []int) int {
 
-	var sum int
-	for i := 0; i < n-1; i++ {
-		for j := i + 1; j < n; j++ {
-			// Devide because it overflows.
-			// SeeAlso: https://qiita.com/drken/items/3b4fdf0a78e7a138cd9a#オーバーフローに注意
-			sum += (a[i] ^ a[j]) % MOD
+	var ans int
+	for d := 0; d < 61; d++ {
+		var zero, one int
+		x := 1 << uint(d)
+		for i := range a {
+			if 0 < (a[i] & x) {
+				one++
+			} else {
+				zero++
+			}
 		}
+		// Devide because it overflows.
+		// SeeAlso: https://qiita.com/drken/items/3b4fdf0a78e7a138cd9a#オーバーフローに注意
+		v := (zero * one % MOD) * (x % MOD) % MOD
+		ans = (ans + v) % MOD
 	}
-	return sum % MOD
+	return ans
 }
 
 func main() {
