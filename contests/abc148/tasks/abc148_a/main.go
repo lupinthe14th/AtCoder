@@ -5,16 +5,7 @@ import (
 )
 
 func roundOne(a, b int) int {
-	var c int
-	switch ans := a * b; ans {
-	case 3:
-		c = 2
-	case 2:
-		c = 3
-	case 6:
-		c = 1
-	}
-	return c
+	return a ^ b
 }
 
 func main() {
