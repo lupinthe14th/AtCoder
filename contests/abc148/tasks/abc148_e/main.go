@@ -9,10 +9,10 @@ func doubleFactorial(n int) int {
 		return 0
 	}
 
-	var c int
-	m := 10
-	for n > m {
-		c = c + (n / m)
+	var c, m int
+	m = 10
+	for n >= m {
+		c += n / m
 		m *= 5
 	}
 	return c
