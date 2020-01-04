@@ -8,10 +8,10 @@ import (
 
 func Example_main() {
 	s := strings.NewReader("oder atc")
-	c, _ := ioutil.ReadAll(s)
+	b, _ := ioutil.ReadAll(s)
 	inr, inw, _ := os.Pipe()
 	orgStdin := os.Stdin
-	inw.Write([]byte(c))
+	inw.Write(b)
 	inw.Close()
 	os.Stdin = inr
 

@@ -9,9 +9,9 @@ import (
 func Example_main() {
 	s := strings.NewReader("2 3 3")
 
-	c, _ := ioutil.ReadAll(s)
+	b, _ := ioutil.ReadAll(s)
 	inr, inw, _ := os.Pipe()
-	inw.Write(c)
+	inw.Write(b)
 	inw.Close()
 	orgStdin := os.Stdin
 
