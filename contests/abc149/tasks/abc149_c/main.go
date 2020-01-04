@@ -12,12 +12,9 @@ import (
 // 素数の場合スライスに追加する。
 // 最大値を返すため、スライスの一番最後を返す
 func trialDivision(n int) int {
-	var ans int
-	for i := n; ; i++ {
-		if primeNaive(i) {
-			ans = i
-			break
-		}
+	ans := n
+	for !primeNaive(ans) {
+		ans++
 	}
 	return ans
 }
