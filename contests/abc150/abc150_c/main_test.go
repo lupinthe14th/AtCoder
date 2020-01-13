@@ -2,7 +2,11 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
+	"math/rand"
+	"os"
 	"testing"
+	"time"
 )
 
 type input struct {
@@ -30,4 +34,36 @@ func TestSolution(t *testing.T) {
 			}
 		})
 	}
+}
+
+func BenchmarkSolution(b *testing.B) {
+	rand.Seed(time.Now().UnixNano())
+	n := 8
+	p := make([]int, n)
+	for i, v := range rand.Perm(n) {
+		p[i] = v + 1
+	}
+	rand.Seed(time.Now().UnixNano())
+	q := make([]int, n)
+	for i, v := range rand.Perm(n) {
+		q[i] = v + 1
+	}
+	for i := 0; i < b.N; i++ {
+		solution(n, p, q)
+	}
+}
+
+func Example_main() {
+	c, _ := ioutil.ReadFile("./input.txt")
+	inr, inw, _ := os.Pipe()
+
+	orgStdin := os.Stdin
+	inw.Write(c)
+	inw.Close()
+	os.Stdin = inr
+
+	main()
+
+	os.Stdin = orgStdin
+	// Output: 17517
 }
