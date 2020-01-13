@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"io"
-	"log"
 	"os"
 	"sort"
 	"strconv"
@@ -14,7 +13,6 @@ import (
 func solution(n int, p, q []int) int {
 	i := dictionaryOrder(p)
 	j := dictionaryOrder(q)
-	log.Printf("i: %d, j: %d", i, j)
 	return abs(i, j)
 }
 
