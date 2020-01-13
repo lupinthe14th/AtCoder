@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
+	"os"
 	"reflect"
 	"testing"
 )
@@ -31,4 +33,19 @@ func TestSolution(t *testing.T) {
 			}
 		})
 	}
+}
+
+func Example_main() {
+	b, _ := ioutil.ReadFile("./input.txt")
+	inr, inw, _ := os.Pipe()
+
+	orgStdin := os.Stdin
+	inw.Write(b)
+	inw.Close()
+	os.Stdin = inr
+
+	main()
+	os.Stdin = orgStdin
+
+	// Output: 2 2
 }

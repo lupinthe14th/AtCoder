@@ -2,6 +2,9 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
+	"os"
+	"strings"
 	"testing"
 )
 
@@ -24,4 +27,21 @@ func TestSolution(t *testing.T) {
 			}
 		})
 	}
+}
+
+func Example_main() {
+	s := strings.NewReader("c")
+	b, _ := ioutil.ReadAll(s)
+	inr, inw, _ := os.Pipe()
+	orgStdin := os.Stdin
+	inw.Write(b)
+	inw.Close()
+	os.Stdin = orgStdin
+	os.Stdin = inr
+
+	main()
+
+	os.Stdin = orgStdin
+
+	// Output: d
 }
