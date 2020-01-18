@@ -22,6 +22,6 @@ func max(x, y int) int {
 
 func main() {
 	var h, w, n int
-	fmt.Scan(&h, &w, n)
+	fmt.Scan(&h, &w, &n)
 	fmt.Println(solution(h, w, n))
 }
