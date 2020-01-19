@@ -11,8 +11,22 @@ type p struct {
 	t, s int
 }
 
+type Ps []p
+
+func (p Ps) Len() int {
+	return len(p)
+}
+
+func (p Ps) Less(i, j int) bool {
+	return p[i].t < p[j].t
+}
+
+func (p Ps) Swap(i, j int) {
+	p[i], p[j] = p[j], p[i]
+}
+
 func solution(n int, matrix [][]int) int {
-	ps := make([]p, n)
+	ps := make(Ps, n)
 
 	for i := 0; i < n; i++ {
 		t := matrix[i][0] + matrix[i][1]
@@ -21,9 +35,7 @@ func solution(n int, matrix [][]int) int {
 	}
 
 	// ロボットを $$T_i$$ が小さい順にソート
-	sort.Slice(ps, func(i, j int) bool {
-		return ps[i].t < ps[j].t
-	})
+	sort.Sort(ps)
 
 	// ロボット$$p_i$$の腕が既に残すと決めたロボットの腕と重ならないならば、ロボット $$p_i$$ を残すと決める。そうでないなら残さないと決める。
 	var ans int
