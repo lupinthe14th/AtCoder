@@ -45,5 +45,5 @@ func main() {
 		nums[i], _ = strconv.Atoi(sc.Text())
 	}
 
-	fmt.Println(solution(n, k, nums))
+	fmt.Printf("%.12f\n", solution(n, k, nums))
 }
