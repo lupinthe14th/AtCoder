@@ -8,7 +8,7 @@ import (
 )
 
 type in struct {
-	a, b, c float64
+	a, b, c int64
 }
 
 type Case struct {
@@ -18,6 +18,7 @@ type Case struct {
 
 var cases = []Case{
 	{in: in{a: 2, b: 3, c: 9}, want: "No"},
+	{in: in{a: 249999999, b: 250000000, c: 999999998}, want: "Yes"},
 }
 
 func TestSolution(t *testing.T) {
