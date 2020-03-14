@@ -19,6 +19,9 @@ type Case struct {
 var cases = []Case{
 	{in: in{h: 4, w: 5}, want: 10},
 	{in: in{h: 7, w: 3}, want: 11},
+	{in: in{h: 1, w: 3}, want: 1},
+	{in: in{h: 1, w: 1}, want: 1},
+	{in: in{h: 2, w: 1}, want: 1},
 }
 
 func TestSolution(t *testing.T) {
