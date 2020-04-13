@@ -4,12 +4,14 @@ import (
 	"fmt"
 )
 
-func sum(n int) int {
-	return n * (n + 1) / 2
-}
-
 func solution(n int) int {
-	return sum(n) - sum(n/3)*3 - sum(n/5)*5 + sum(n/15)*15
+	sum := 0
+	for i := 1; i <= n; i++ {
+		if i%3 != 0 && i%5 != 0 {
+			sum += i
+		}
+	}
+	return sum
 }
 
 func main() {
