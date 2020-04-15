@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 )
 
 func solution(a [][]int, b []int) string {
@@ -20,7 +19,6 @@ func solution(a [][]int, b []int) string {
 			}
 		}
 	}
-	log.Print(m)
 
 	for i := 0; i < 3; i++ {
 		if m[i][0] == 1 && m[i][1] == 1 && m[i][2] == 1 {

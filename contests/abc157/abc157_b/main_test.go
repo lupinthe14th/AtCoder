@@ -19,6 +19,7 @@ type Case struct {
 
 var cases = []Case{
 	{in: in{a: [][]int{{84, 97, 66}, {79, 89, 11}, {61, 59, 7}}, b: []int{89, 7, 87, 79, 24, 84, 30}}, want: "Yes"},
+	{in: in{a: [][]int{{31, 28, 30}, {70, 90, 84}, {86, 68, 69}}, b: []int{84, 52, 12, 69, 30, 68}}, want: "Yes"},
 }
 
 func TestSolution(t *testing.T) {
