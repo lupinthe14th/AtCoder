@@ -59,11 +59,12 @@ func Example_main() {
 
 	orgStdin := os.Stdin
 	inw.Write(c)
-	inw.Close()
 	os.Stdin = inr
+	defer func() {
+		inw.Close()
+		os.Stdin = orgStdin
+	}()
 
 	main()
-
-	os.Stdin = orgStdin
 	// Output: 17517
 }
