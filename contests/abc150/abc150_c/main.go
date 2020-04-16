@@ -1,13 +1,8 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"io"
-	"os"
 	"sort"
-	"strconv"
-	"strings"
 )
 
 func solution(n int, p, q []int) int {
@@ -62,36 +57,16 @@ func factorical(n int) int {
 }
 
 func main() {
-	reader := bufio.NewReaderSize(os.Stdin, 10240*10240)
 
-	n, err := strconv.Atoi(readLine(reader))
-	checkError(err)
+	var n int
+	fmt.Scan(&n)
 	p := make([]int, n)
-	ss := strings.Split(readLine(reader), " ")
-	for i := range ss {
-		p[i], err = strconv.Atoi(ss[i])
-		checkError(err)
+	for i := range p {
+		fmt.Scan(&p[i])
 	}
 	q := make([]int, n)
-	ss = strings.Split(readLine(reader), " ")
-	for i := range ss {
-		q[i], err = strconv.Atoi(ss[i])
-		checkError(err)
+	for i := range q {
+		fmt.Scan(&q[i])
 	}
 	fmt.Println(solution(n, p, q))
-}
-
-func readLine(reader *bufio.Reader) string {
-	str, _, err := reader.ReadLine()
-	if err == io.EOF {
-		return ""
-	}
-
-	return strings.TrimRight(string(str), "\r\n")
-}
-
-func checkError(err error) {
-	if err != nil {
-		panic(err)
-	}
 }
