@@ -46,6 +46,7 @@ func Example_main() {
 
 	// Output: Yes
 }
+
 func Example_main2() {
 	c, _ := ioutil.ReadFile("./input2.txt")
 	inr, inw, _ := os.Pipe()
