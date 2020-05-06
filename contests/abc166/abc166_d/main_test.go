@@ -13,7 +13,7 @@ func TestSolution(t *testing.T) {
 		in   int
 		want []int
 	}{
-		{in: 33, want: []int{-1, 2}},
+		{in: 33, want: []int{1, -2}},
 	}
 	for i, tt := range cases {
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
