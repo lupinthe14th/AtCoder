@@ -5,15 +5,9 @@ import (
 )
 
 func solution(a, b, c int) int {
-
 	count := 0
 	for a&1 == 0 && b&1 == 0 && c&1 == 0 {
-		at := a / 2
-		bt := b / 2
-		ct := c / 2
-		a = bt + ct
-		b = at + ct
-		c = at + bt
+		a, b, c = (b+c)/2, (a+c)/2, (a+b)/2
 		count++
 		if a == b && b == c && c == a {
 			return -1
