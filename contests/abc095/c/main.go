@@ -5,18 +5,12 @@ import (
 )
 
 func solution(a, b, c, x, y int) int {
-	out := max(x, y) * c * 2
+	out := 1 << 31
 
-	out = min(out, a*x+b*y)
-
-	tmp := c * 2 * min(x, y)
-	t := min(x, y)
-	x -= t
-	y -= t
-
-	tmp += a*x + b*y
-
-	return min(out, tmp)
+	for i := 0; i <= 1e5; i++ {
+		out = min(out, i*2*c+max(0, x-i)*a+max(0, y-i)*b)
+	}
+	return out
 }
 
 func min(x, y int) int {
