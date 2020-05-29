@@ -1,0 +1,44 @@
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"log"
+	"os"
+	"testing"
+)
+
+func TestSolution(t *testing.T) {
+
+	var cases = []struct {
+		in   string
+		want int
+	}{
+		{in: "BBW", want: 2},
+		{in: "BWBWBW", want: 6},
+	}
+	for i, tt := range cases {
+		t.Run(fmt.Sprint(i), func(t *testing.T) {
+			got := solution(tt.in)
+			if got != tt.want {
+				t.Errorf("in: %+v, got: %v, want: %v", tt.in, got, tt.want)
+			}
+		})
+	}
+}
+
+func Example_main() {
+	c, _ := ioutil.ReadFile("./in01.txt")
+	inr, inw, _ := os.Pipe()
+	orgStdin := os.Stdin
+	log.Print(orgStdin)
+	inw.Write(c)
+	inw.Close()
+	os.Stdin = orgStdin
+	defer func() { os.Stdin = orgStdin }()
+	os.Stdin = inr
+
+	main()
+
+	// Output: 6
+}
