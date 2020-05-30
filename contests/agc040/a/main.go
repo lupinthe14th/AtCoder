@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strings"
 )
 
 func solution(s string) int {
@@ -36,7 +35,23 @@ func max(x, y int) int {
 }
 
 func main() {
-	reader := bufio.NewReaderSize(os.Stdin, 10240*10240)
-	str, _, _ := reader.ReadLine()
-	fmt.Println(solution(strings.TrimRight(string(str), "\r\n")))
+	var fp *os.File = os.Stdin
+	reader := bufio.NewReaderSize(fp, 1024)
+	s := readLine(reader)
+	fmt.Println(solution(s))
+}
+
+func readLine(reader *bufio.Reader) string {
+	buf := make([]byte, 0, 1024)
+
+	for {
+		l, p, _ := reader.ReadLine()
+
+		buf = append(buf, l...)
+
+		if !p {
+			break
+		}
+	}
+	return string(buf)
 }
