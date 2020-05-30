@@ -15,7 +15,7 @@ func solution(s string) string {
 	}
 	for i := range memo {
 		if memo[i] == 0 {
-			return string(i + 'a')
+			return string(rune(i + 'a'))
 		}
 	}
 	return "None"
