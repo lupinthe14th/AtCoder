@@ -4,30 +4,27 @@ import (
 	"fmt"
 )
 
-var (
-	a, b, c, d, e, k int
-)
-
-func main() {
-	fmt.Scanf("%d", &a)
-	fmt.Scanf("%d", &b)
-	fmt.Scanf("%d", &c)
-	fmt.Scanf("%d", &d)
-	fmt.Scanf("%d", &e)
-	fmt.Scanf("%d", &k)
-
-	if IsCommunicable(a, b, k) && IsCommunicable(a, c, k) && IsCommunicable(a, d, k) && IsCommunicable(a, e, k) &&
-		IsCommunicable(b, c, k) && IsCommunicable(b, d, k) && IsCommunicable(b, e, k) &&
-		IsCommunicable(c, d, k) && IsCommunicable(c, e, k) {
-		fmt.Println("Yay!")
-	} else {
-		fmt.Println(":(")
+func solution(a []int) string {
+	k := a[5]
+	for i := 0; i < 5; i++ {
+		for j := 0; j < 5; j++ {
+			if i == j {
+				continue
+			}
+			if a[i]-a[j] > k {
+				return ":("
+			}
+		}
 	}
+	return "Yay!"
 }
 
-func IsCommunicable(i, j, k int) bool {
-	if k < j-i {
-		return false
+func main() {
+	a := make([]int, 0, 6)
+	for i := 0; i < 6; i++ {
+		t := 0
+		fmt.Scan(&t)
+		a = append(a, t)
 	}
-	return true
+	fmt.Println(solution(a))
 }
