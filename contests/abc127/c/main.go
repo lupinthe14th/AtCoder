@@ -5,16 +5,15 @@ import (
 )
 
 func solution(n, m int, lr [][]int) int {
-	lo, hi := -1<<31, 1<<31
+	l, r := -1<<31, 1<<31
 	for i := 0; i < m; i++ {
-		lo = max(lo, lr[i][0])
-		hi = min(hi, lr[i][1])
+		l = max(l, lr[i][0])
+		r = min(r, lr[i][1])
 	}
-	out := hi - lo + 1
-	if out < 0 {
-		return 0
+	if l <= r {
+		return r - l + 1
 	}
-	return out
+	return 0
 }
 
 func min(x, y int) int {
