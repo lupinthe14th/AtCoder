@@ -12,20 +12,13 @@ func solution(a, b int) string {
 	case a < 0 && b > 0:
 		out = "Zero"
 	case b < 0:
-		if abs(-a-b)%2 != 0 {
+		if (b-a+1)%2 == 0 {
 			out = "Positive"
 		} else {
 			out = "Negative"
 		}
 	}
 	return out
-}
-
-func abs(x int) int {
-	if x < 0 {
-		return -x
-	}
-	return x
 }
 
 func main() {
