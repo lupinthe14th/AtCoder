@@ -4,25 +4,22 @@ import (
 	"fmt"
 )
 
-var (
-	a, b, x, y int
-)
+func solution(a, b int) int {
+	out := 0
+	for i := 0; i < 2; i++ {
+		if a > b {
+			out += a
+			a--
+		} else {
+			out += b
+			b--
+		}
+	}
+	return out
+}
 
 func main() {
-	fmt.Scanf("%d%d", &a, &b)
-	if a > b {
-		x = a
-		a--
-	} else {
-		x = b
-		b--
-	}
-	if a > b {
-		y = a
-		a--
-	} else {
-		y = b
-		b--
-	}
-	fmt.Println(x + y)
+	var a, b int
+	fmt.Scan(&a, &b)
+	fmt.Println(solution(a, b))
 }
