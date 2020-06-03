@@ -5,7 +5,7 @@ import (
 )
 
 func solution(n int) int {
-	return n*(n+1)/2 - n
+	return n * (n - 1) / 2
 }
 
 func main() {
