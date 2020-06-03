@@ -13,8 +13,9 @@ func solution(n int, a []int) int {
 		}
 	}
 	for _, num := range a {
-		out *= num
-		if out > 1e18 || out < num {
+		if num <= 1e18/out {
+			out *= num
+		} else {
 			return -1
 		}
 	}
