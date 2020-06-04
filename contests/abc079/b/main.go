@@ -5,26 +5,13 @@ import (
 )
 
 func solution(n int) int {
-
-	memo := make(map[int]int, 86)
-	var rec func(n int) int
-
-	rec = func(n int) int {
-		if n == 0 {
-			return 2
-		}
-
-		if n == 1 {
-			return 1
-		}
-		out, ok := memo[n]
-		if !ok {
-			out = rec(n-1) + rec(n-2)
-			memo[n] = out
-		}
-		return out
+	var L [87]int
+	L[0] = 2
+	L[1] = 1
+	for i := 2; i <= n; i++ {
+		L[i] = L[i-1] + L[i-2]
 	}
-	return rec(n)
+	return L[n]
 }
 
 func main() {
