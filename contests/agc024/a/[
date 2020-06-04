@@ -1,0 +1,33 @@
+package main
+
+import (
+	"fmt"
+	"log"
+	"math/big"
+)
+
+func solution(a, b, c, k int) (int, error) {
+	c = 3 * k / 4
+	log.Print(c)
+	for i := 0; i < k%4; i++ {
+	}
+	A := big.NewInt(int64(a))
+	B := big.NewInt(b)
+	out.Sub(A, B)
+	Z := big.NewInt(0)
+	if Z.Abs(out).Cmp(big.NewInt(1e18)) == 1 {
+		return out, fmt.Errorf("Unfair")
+	}
+	return out, nil
+}
+
+func main() {
+	var a, b, c, k int
+	fmt.Scan(&a, &b, &c, &k)
+	out, err := solution(a, b, c, k)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(out)
+	}
+}
