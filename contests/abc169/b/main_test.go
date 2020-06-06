@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"testing"
 )
 
@@ -30,7 +31,7 @@ func TestSolution(t *testing.T) {
 }
 
 func Example_main() {
-	fd, _ := os.Open("./input.txt")
+	fd, _ := os.Open(filepath.Join("testdata", "input.txt"))
 	orgStdin := os.Stdin
 	os.Stdin = fd
 	defer func() {
