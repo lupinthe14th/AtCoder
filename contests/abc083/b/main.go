@@ -8,7 +8,7 @@ func solution(n, a, b int) int {
 	out := 0
 	for i := 1; i <= n; i++ {
 		t := sumDigit(i)
-		if t >= a && t <= b {
+		if a <= t && t <= b {
 			out += i
 		}
 	}
