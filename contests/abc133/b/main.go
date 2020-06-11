@@ -8,10 +8,7 @@ import (
 func solution(n, d int, x [][]int) int {
 	out := 0
 	for i := 0; i < n; i++ {
-		for j := 0; j < n; j++ {
-			if i >= j {
-				continue
-			}
+		for j := i + 1; j < n; j++ {
 			y := x[i]
 			z := x[j]
 			sum := 0
