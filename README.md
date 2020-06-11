@@ -1,5 +1,6 @@
 # AtCoder
 
+[![lupinthe14th](https://atcoder-badges.now.sh/api/atcoder/lupinthe14th)](https://atcoder.jp/users/lupinthe14th)
 [![Build Status](https://travis-ci.org/lupinthe14th/AtCoder.svg?branch=master)](https://travis-ci.org/lupinthe14th/AtCoder)
 [![Go Report Card](https://goreportcard.com/badge/github.com/lupinthe14th/AtCoder)][goreportcard]
 [![codecov](https://codecov.io/gh/lupinthe14th/AtCoder/branch/master/graph/badge.svg)](https://codecov.io/gh/lupinthe14th/AtCoder)
