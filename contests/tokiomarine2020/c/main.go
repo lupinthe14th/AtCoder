@@ -4,29 +4,29 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"reflect"
 )
 
 func solution(n, k int, a []int) []int {
-	c := 0
-	for k > 0 && c < 100 {
-		memo := make([]int, n)
+	for k > 0 {
+		memo := make([]int, n+1)
 		for i := 0; i < n; i++ {
-			lo := max(0, i-a[i])
-			hi := min(n-1, i+a[i])
-			memo[lo]++
-
-			if hi+1 < n {
-				memo[hi+1]--
-			}
+			l := max(0, i-a[i])
+			r := min(n, i+a[i]+1)
+			memo[l]++
+			memo[r]--
 
 		}
 
-		for i := 1; i < n; i++ {
-			memo[i] += memo[i-1]
+		for i := 0; i < n; i++ {
+			memo[i+1] += memo[i]
+		}
+		memo = memo[:n]
+		if reflect.DeepEqual(a, memo) {
+			break
 		}
 		a = memo
 		k--
-		c++
 	}
 	return a
 }
