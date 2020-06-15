@@ -9,13 +9,13 @@ func solution(x, n int, p []int) int {
 		return x
 	}
 
-	var memo [103]int
+	var memo [102]int
 	for i := range p {
 		memo[p[i]]--
 	}
 
 	lo := 1 << 31
-	for i := 0; i <= 102; i++ {
+	for i := 0; i <= 101; i++ {
 		if memo[i] == 0 {
 			memo[i] = abs(x - i)
 			lo = min(lo, memo[i])
@@ -23,7 +23,7 @@ func solution(x, n int, p []int) int {
 	}
 
 	out := 0
-	for i := 0; i <= 102; i++ {
+	for i := 0; i <= 101; i++ {
 		if memo[i] != -1 && lo == memo[i] {
 			out = i
 			break
