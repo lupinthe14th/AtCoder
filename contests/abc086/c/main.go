@@ -4,6 +4,8 @@ import (
 	"fmt"
 )
 
+// https://img.atcoder.jp/arc089/editorial.pdf
+// https://youtu.be/Fak2KINubj0?t=1267
 func solution(n int, matrix [][3]int) string {
 	matrix = append([][3]int{{0, 0, 0}}, matrix...)
 
