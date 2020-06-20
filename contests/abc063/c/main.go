@@ -2,30 +2,26 @@ package main
 
 import (
 	"fmt"
+	"sort"
 )
 
 func solution(n int, s []int) int {
-	out := 0
-	for i := 0; i < 1<<uint(n); i++ {
-		sum := 0
-		for j := 0; j < n; j++ {
-			if i>>uint(j)&1 == 1 {
-				sum += s[j]
-			}
-		}
-		if sum%10 == 0 {
-			sum = 0
-		}
-		out = max(out, sum)
+	sort.Ints(s)
+	sum := 0
+	for i := range s {
+		sum += s[i]
 	}
-	return out
-}
 
-func max(x, y int) int {
-	if x > y {
-		return x
+	if sum%10 != 0 {
+		return sum
 	}
-	return y
+
+	for i := range s {
+		if s[i]%10 != 0 {
+			return sum - s[i]
+		}
+	}
+	return 0
 }
 
 func main() {
