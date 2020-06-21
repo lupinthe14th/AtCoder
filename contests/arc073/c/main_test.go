@@ -14,12 +14,13 @@ func TestSolution(t *testing.T) {
 	}
 	tests := []struct {
 		in   in
-		want uint64
+		want int
 	}{
 		{in: in{n: 2, t: 4, ts: []int{0, 3}}, want: 7},
 		{in: in{n: 2, t: 4, ts: []int{0, 5}}, want: 8},
 		{in: in{n: 4, t: 1000000000, ts: []int{0, 1000, 1000000, 1000000000}}, want: 2000000000},
 		{in: in{n: 1, t: 1, ts: []int{0}}, want: 1},
+		{in: in{n: 9, t: 10, ts: []int{0, 3, 5, 7, 100, 110, 200, 300, 311}}, want: 67},
 	}
 	for i, tt := range tests {
 		t.Run(fmt.Sprint(i), func(t *testing.T) {

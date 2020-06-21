@@ -6,17 +6,17 @@ import (
 	"os"
 )
 
-func solution(n, t int, ts []int) uint64 {
-	var sum uint64 = 0
+func solution(n, t int, ts []int) int {
+	var sum int = 0
 	for i := 1; i < n; i++ {
 		d := ts[i] - ts[i-1]
 		if d >= t {
-			sum += uint64(t)
+			sum += t
 		} else {
-			sum += uint64(d)
+			sum += d
 		}
 	}
-	return sum + uint64(t)
+	return sum + t
 }
 
 func main() {
