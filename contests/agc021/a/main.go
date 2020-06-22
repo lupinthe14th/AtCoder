@@ -4,25 +4,9 @@ import (
 	"fmt"
 )
 
-func solution(n string) int {
-	l := len(n)
-	nums := make([]int, l)
-	sum := 0
-	for i := range n {
-		nums[i] = int(n[i] - '0')
-		sum += nums[i]
-	}
-
-	for i := l - 1; i > 0; i-- {
-		nums[i] = 9
-		nums[i-1] = nums[i-1] - 1
-		tmp := 0
-		for j := range nums {
-			tmp += nums[j]
-		}
-		sum = max(sum, tmp)
-	}
-	return sum
+// SeeAlso: https://atcoder.jp/contests/agc021/submissions/2130303
+func solution(n int) int {
+	return max(helper(n), helper(dec(n)))
 }
 
 func max(x, y int) int {
@@ -32,8 +16,27 @@ func max(x, y int) int {
 	return y
 }
 
+func helper(n int) int {
+	out := 0
+	for n > 0 {
+		out += n % 10
+		n /= 10
+	}
+	return out
+}
+
+func dec(n int) int {
+	k := 1
+	for n >= 10 {
+		n /= 10
+		k *= 10
+	}
+	return n*k - 1
+
+}
+
 func main() {
-	var n string
+	var n int
 	fmt.Scan(&n)
 	fmt.Println(solution(n))
 }

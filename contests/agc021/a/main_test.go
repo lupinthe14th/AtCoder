@@ -9,11 +9,10 @@ import (
 
 func TestSolution(t *testing.T) {
 	tests := []struct {
-		in   string
-		want int
+		in, want int
 	}{
-		{in: "100", want: 18},
-		{in: "3141592653589793", want: 137},
+		{in: 100, want: 18},
+		{in: 3141592653589793, want: 137},
 	}
 	for i, tt := range tests {
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
