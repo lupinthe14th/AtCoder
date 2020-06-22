@@ -5,16 +5,22 @@ import (
 )
 
 func solution(n int, a []int, q int, b, c []int) []uint64 {
+	var memo [1e5 + 1]int
+	var sum uint64
+	for i := range a {
+		memo[a[i]]++
+		sum += uint64(a[i])
+	}
 	out := make([]uint64, q)
 	for i := 0; i < q; i++ {
-		var sum uint64
-		for j := range a {
-			if a[j] == b[i] {
-				a[j] = c[i]
-			}
-			sum += uint64(a[j])
-		}
 		out[i] = sum
+		num := memo[b[i]]
+		if num > 0 {
+			sum += uint64(num * (c[i] - b[i]))
+			out[i] = sum
+			memo[b[i]] = 0
+			memo[c[i]] += num
+		}
 	}
 	return out
 }
