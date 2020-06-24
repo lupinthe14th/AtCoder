@@ -9,21 +9,9 @@ import (
 
 func solution(n int, a []int) int {
 	sort.Ints(a)
-	memo := make([][3]int, n)
-	for i := 0; i < n; i++ {
-		memo[i][0] = a[i]
-	}
-
-	j := 0
-	for i := 3*n - 1; i > n; i -= 2 {
-		memo[j][2] = a[i]
-		memo[j][1] = a[i-1]
-		j++
-	}
-
 	out := 0
-	for i := range memo {
-		out += memo[i][1]
+	for i := n; i < 3*n; i += 2 {
+		out += a[i]
 	}
 	return out
 }
