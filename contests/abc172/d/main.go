@@ -5,19 +5,15 @@ import (
 )
 
 func solution(n int) int {
-	memo := make([]int, n+1)
-
-	for i := 1; i <= n; i++ {
-		for j := 1; i*j <= n; j++ {
-			memo[i*j]++
-		}
-	}
-
 	out := 0
 	for i := 1; i <= n; i++ {
-		out += i * memo[i]
+		out += i * g(n/i)
 	}
 	return out
+}
+
+func g(n int) int {
+	return n * (n + 1) / 2
 }
 
 func main() {
