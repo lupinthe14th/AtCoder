@@ -20,8 +20,8 @@ func TestSolution(t *testing.T) {
 		{in: in{d: 1, n: 11}, want: 1100},
 	}
 	for i, tt := range tests {
-		i := i
-		tt := tt
+		i := i   // capture range variable
+		tt := tt // capture range variable
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
 			t.Parallel()
 			got := solution(tt.in.d, tt.in.n)
