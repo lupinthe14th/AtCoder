@@ -1,0 +1,17 @@
+package main
+
+import (
+	"fmt"
+)
+
+func solution(c [3][3]int) string {
+	return "No"
+}
+
+func main() {
+	var c [3][3]int
+	for i := 0; i < 3; i++ {
+		fmt.Scan(&c[i][j])
+	}
+	fmt.Println(solution(c))
+}
