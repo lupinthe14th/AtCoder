@@ -20,7 +20,9 @@ func TestSolution(t *testing.T) {
 		{in: in{q: 10, h: 100, s: 1000, d: 10000, n: 1}, want: 40},
 	}
 	for i, tt := range tests {
+		i, tt := i, tt
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
+			t.Parallel()
 			got := solution(tt.in.q, tt.in.h, tt.in.s, tt.in.d, tt.in.n)
 			if got != tt.want {
 				t.Fatalf("in: %v got: %v want: %v", tt.in, got, tt.want)
