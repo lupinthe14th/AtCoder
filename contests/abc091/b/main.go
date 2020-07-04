@@ -5,19 +5,14 @@ import (
 )
 
 func solution(n, m int, s, t []string) int {
-	memo := make([]int, len(s))
+	memo := make(map[string]int)
 
-	for i := range memo {
-		for j := range s {
-			if s[i] == s[j] {
-				memo[i]++
-			}
-		}
-		for j := range t {
-			if s[i] == t[j] {
-				memo[i]--
-			}
-		}
+	for _, v := range s {
+		memo[v]++
+
+	}
+	for _, v := range t {
+		memo[v]--
 	}
 
 	out := 0
