@@ -5,22 +5,24 @@ import (
 )
 
 func solution(n, m int, s, t []string) int {
-	memo := make(map[string]int)
+	memo := make([]int, len(s))
 
-	for _, v := range s {
-		memo[v]++
+	for i := range memo {
+		for j := range s {
+			if s[i] == s[j] {
+				memo[i]++
+			}
+		}
+		for j := range t {
+			if s[i] == t[j] {
+				memo[i]--
+			}
+		}
 	}
 
-	for _, v := range t {
-		memo[v]--
-	}
-
-	out := -1 << 31
-	for _, v := range memo {
-		out = max(out, v)
-	}
-	if out < 0 {
-		return 0
+	out := 0
+	for _, n := range memo {
+		out = max(out, n)
 	}
 	return out
 }
