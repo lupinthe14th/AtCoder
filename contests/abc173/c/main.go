@@ -24,30 +24,6 @@ func solution(h, w, k int, c [][]byte) int {
 	return out
 }
 
-func re(t, c [][]byte) [][]byte {
-	t = make([][]byte, len(c)+1)
-	for i := range t {
-		t[i] = make([]byte, len(c[0])+1)
-	}
-	for i := range c {
-		for j := range c[i] {
-			t[i+1][j+1] = c[i][j]
-		}
-	}
-	return t
-}
-func count(c [][]byte) int {
-	cnt := 0
-	for i := range c {
-		for j := range c[i] {
-			if c[i][j] == '#' {
-				cnt++
-			}
-		}
-	}
-	return cnt
-}
-
 func main() {
 	var h, w, k int
 	fmt.Scan(&h, &w, &k)
