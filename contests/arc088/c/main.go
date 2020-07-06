@@ -3,18 +3,15 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"math"
 	"os"
 )
 
 func solution(x, y int) int {
-	memo := make([]int, 0)
-	hi := 0
-	for i := 1; hi <= y; i++ {
-		hi = x * int(math.Pow(2, float64(i)-1))
-		memo = append(memo, hi)
+	c := 0
+	for cur := x; cur <= y; cur <<= 1 {
+		c++
 	}
-	return len(memo) - 1
+	return c
 }
 
 func main() {
