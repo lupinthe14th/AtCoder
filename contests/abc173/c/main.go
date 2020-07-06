@@ -6,12 +6,12 @@ import (
 
 func solution(h, w, k int, c [][]byte) int {
 	out := 0
-	for R := 0; R < 1<<uint(h)-1; R++ {
-		for C := 0; C < 1<<uint(w)-1; C++ {
+	for row := 0; row < 1<<uint(h); row++ {
+		for col := 0; col < 1<<uint(w); col++ {
 			b := 0
-			for i := range c {
-				for j := range c[i] {
-					if R>>uint(i)&1 == 0 && C>>uint(j)&1 == 0 && c[i][j] == '#' {
+			for i := 0; i < h; i++ {
+				for j := 0; j < w; j++ {
+					if row>>uint(i)&1 == 0 && col>>uint(j)&1 == 0 && c[i][j] == '#' {
 						b++
 					}
 				}
