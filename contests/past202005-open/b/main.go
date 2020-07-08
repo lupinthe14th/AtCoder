@@ -8,36 +8,32 @@ import (
 
 func solution(n, m, q int, s [][]int) []int {
 	type user struct {
-		id     int
-		scores []int
-		score  int
+		collects []int
 	}
-	u := make([]user, n)
-	for i := range u {
-		u[i].scores = make([]int, m)
+	users := make([]user, n)
+	for i := range users {
+		users[i].collects = make([]int, 0, m)
 	}
-	memo := make([]int, m)
+	problems := make([]int, m)
+	for i := range problems {
+		problems[i] = n
+	}
 	out := make([]int, 0, n)
 	for i := range s {
 		cid := s[i][0] // case id: 1 || 2
 		switch cid {
 		case 1:
 			uid := s[i][1] - 1
-			out = append(out, u[uid].score)
+			score := 0
+			for _, v := range users[uid].collects {
+				score += problems[v]
+			}
+			out = append(out, score)
 		case 2:
 			uid := s[i][1] - 1 // uid
 			pid := s[i][2] - 1 // Problem id
-			memo[pid]++
-			score := n - memo[pid]
-			u[uid].scores[pid] = score
-			u[uid].score += score
-			for k := range u {
-				if k != uid && u[k].scores[pid] > 0 {
-					t := u[k].scores[pid]
-					u[k].scores[pid] = score
-					u[k].score -= t - score
-				}
-			}
+			users[uid].collects = append(users[uid].collects, pid)
+			problems[pid]--
 		}
 	}
 	return out
