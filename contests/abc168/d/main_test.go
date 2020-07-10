@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
+	"path/filepath"
 	"reflect"
 	"testing"
 )
@@ -26,7 +26,9 @@ func TestSolution(t *testing.T) {
 		{in: in{n: 6, m: 9, a: []int{3, 6, 2, 5, 4, 1, 6, 4, 5}, b: []int{4, 1, 4, 3, 6, 5, 2, 5, 6}}, want: want{ans: "Yes", nums: []int{6, 5, 5, 1, 1}}},
 	}
 	for i, tt := range cases {
+		i, tt := i, tt
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
+			t.Parallel()
 			gotA, gotN := solution(tt.in.n, tt.in.m, tt.in.a, tt.in.b)
 			if gotA != tt.want.ans || !reflect.DeepEqual(gotN, tt.want.nums) {
 				t.Errorf("in: %+v, gotA: %v, gotN: %v, want: %v", tt.in, gotA, gotN, tt.want)
@@ -36,14 +38,13 @@ func TestSolution(t *testing.T) {
 }
 
 func Example_main() {
-	c, _ := ioutil.ReadFile("./input.txt")
-	inr, inw, _ := os.Pipe()
+	fd, _ := os.Open(filepath.Join("testdata", "input.txt"))
 	orgStdin := os.Stdin
-	inw.Write(c)
-	inw.Close()
-	os.Stdin = orgStdin
-	defer func() { os.Stdin = orgStdin }()
-	os.Stdin = inr
+	os.Stdin = fd
+	defer func() {
+		os.Stdin = orgStdin
+		fd.Close()
+	}()
 
 	main()
 
