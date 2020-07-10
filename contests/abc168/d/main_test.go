@@ -23,7 +23,7 @@ func TestSolution(t *testing.T) {
 		want want
 	}{
 		{in: in{n: 4, m: 4, a: []int{1, 2, 3, 4}, b: []int{2, 3, 4, 2}}, want: want{ans: "Yes", nums: []int{1, 2, 2}}},
-		{in: in{n: 6, m: 9, a: []int{3, 6, 2, 5, 4, 1, 6, 4, 5}, b: []int{4, 1, 4, 3, 6, 5, 2, 5, 6}}, want: want{ans: "Yes", nums: []int{6, 5, 5, 1, 1}}},
+		{in: in{n: 6, m: 9, a: []int{3, 6, 2, 5, 4, 1, 6, 4, 5}, b: []int{4, 1, 4, 3, 6, 5, 2, 5, 6}}, want: want{ans: "Yes", nums: []int{6, 5, 6, 1, 1}}},
 	}
 	for i, tt := range cases {
 		i, tt := i, tt
@@ -52,7 +52,7 @@ func Example_main() {
 	// Yes
 	// 6
 	// 5
-	// 5
+	// 6
 	// 1
 	// 1
 }
