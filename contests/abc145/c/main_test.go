@@ -16,8 +16,8 @@ func TestSolution(t *testing.T) {
 		in   in
 		want float64
 	}{
-		{in: in{n: 3, p: [][2]int{{0, 0}, {1, 0}, {0, 1}}}, want: 2.2761423749},
-		{in: in{n: 2, p: [][2]int{{-879, 981}, {-866, 890}}}, want: 91.9238815543},
+		{in: in{n: 3, p: [][2]int{{0, 0}, {1, 0}, {0, 1}}}, want: 2.2761423749153966},
+		{in: in{n: 2, p: [][2]int{{-879, 981}, {-866, 890}}}, want: 91.92388155425118},
 	}
 	for i, tt := range tests {
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
