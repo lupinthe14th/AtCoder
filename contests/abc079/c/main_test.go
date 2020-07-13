@@ -35,5 +35,5 @@ func Example_main() {
 
 	main()
 
-	// Output: 3+2+4-2=7
+	// Output: 3-2+4+2=7
 }
