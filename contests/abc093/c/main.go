@@ -11,11 +11,11 @@ func solution(a, b, c int) int {
 	hi := memo[2]
 	lo := memo[0]
 	mi := memo[1]
-	if (hi-(hi-mi+lo))%2 == 1 {
-		return hi - mi + 2 + (hi-(hi-mi+lo))/2
+	if (mi-lo)%2 == 1 {
+		return hi - mi + 2 + (mi-lo)/2
 
 	}
-	return hi - mi + (hi-(hi-mi+lo))/2
+	return hi - mi + (mi-lo)/2
 }
 
 func abs(x int) int {
