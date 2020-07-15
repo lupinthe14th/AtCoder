@@ -12,39 +12,41 @@ type Case struct {
 	want string
 }
 
-var cases = []Case{
+var tests = []Case{
 	{in: "akasaka", want: "Yes"},
 	{in: "atcoder", want: "No"},
 }
 
 func TestSolution(t *testing.T) {
 	t.Parallel()
-	for i, tt := range cases {
+	for i, tt := range tests {
 		i, tt := i, tt
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
 			t.Parallel()
 			got := solution(tt.in)
 			if got != tt.want {
-				t.Errorf("in: %+v, got: %v, want: %v", tt.in, got, tt.want)
+				t.Fatalf("in: %+v, got: %v, want: %v", tt.in, got, tt.want)
 			}
 		})
 	}
 }
 
 func TestIsPalindrome(t *testing.T) {
-	var cases = []struct {
+	t.Parallel()
+	var tests = []struct {
 		in   string
 		want bool
 	}{
 		{in: "akasaka", want: true},
 		{in: "atcoder", want: false},
 	}
-	for i, c := range cases {
+	for i, tt := range tests {
+		i, tt := i, tt
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
 			t.Parallel()
-			got := isPalindrome(c.in)
-			if got != c.want {
-				t.Errorf("got: %v, want: %v", got, c.want)
+			got := isPalindrome(tt.in)
+			if got != tt.want {
+				t.Fatalf("got: %v, want: %v", got, tt.want)
 			}
 		})
 	}
