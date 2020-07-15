@@ -4,30 +4,30 @@ import (
 	"fmt"
 )
 
-var ans int
-
 func solution(n, m, q int, matrix [][]int) int {
+	var ans int
+	var dfs func(n, m, q int, matrix [][]int, A []int)
+	dfs = func(n, m, q int, matrix [][]int, A []int) {
+		if len(A) == n+1 {
+			now := 0
+			for i := 0; i < q; i++ {
+				if A[matrix[i][1]]-A[matrix[i][0]] == matrix[i][2] {
+					now += matrix[i][3]
+				}
+			}
+			ans = max(ans, now)
+			return
+		}
+		A = append(A, A[len(A)-1])
+		for A[len(A)-1] <= m {
+			dfs(n, m, q, matrix, A)
+			A[len(A)-1]++
+		}
+	}
+
 	ans = 0
 	dfs(n, m, q, matrix, []int{1, 1})
 	return ans
-}
-
-func dfs(n, m, q int, matrix [][]int, A []int) {
-	if len(A) == n+1 {
-		now := 0
-		for i := 0; i < q; i++ {
-			if A[matrix[i][1]]-A[matrix[i][0]] == matrix[i][2] {
-				now += matrix[i][3]
-			}
-		}
-		ans = max(ans, now)
-		return
-	}
-	A = append(A, A[len(A)-1])
-	for A[len(A)-1] <= m {
-		dfs(n, m, q, matrix, A)
-		A[len(A)-1]++
-	}
 }
 
 func max(x, y int) int {
