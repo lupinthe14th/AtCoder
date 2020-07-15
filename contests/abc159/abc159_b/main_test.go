@@ -18,8 +18,11 @@ var cases = []Case{
 }
 
 func TestSolution(t *testing.T) {
+	t.Parallel()
 	for i, tt := range cases {
+		i, tt := i, tt
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
+			t.Parallel()
 			got := solution(tt.in)
 			if got != tt.want {
 				t.Errorf("in: %+v, got: %v, want: %v", tt.in, got, tt.want)
@@ -38,6 +41,7 @@ func TestIsPalindrome(t *testing.T) {
 	}
 	for i, c := range cases {
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
+			t.Parallel()
 			got := isPalindrome(c.in)
 			if got != c.want {
 				t.Errorf("got: %v, want: %v", got, c.want)

@@ -8,6 +8,7 @@ import (
 )
 
 func TestSolution(t *testing.T) {
+	t.Parallel()
 	var cases = []struct {
 		in   int
 		want string
@@ -16,7 +17,9 @@ func TestSolution(t *testing.T) {
 		{in: 777, want: "Yes"},
 	}
 	for i, tt := range cases {
+		i, tt := i, tt
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
+			t.Parallel()
 			got := solution(tt.in)
 			if got != tt.want {
 				t.Errorf("in: %v, got: %v, want: %v", tt.in, got, tt.want)

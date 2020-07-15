@@ -23,8 +23,11 @@ var cases = []Case{
 }
 
 func TestSolution(t *testing.T) {
+	t.Parallel()
 	for i, tt := range cases {
+		i, tt := i, tt
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
+			t.Parallel()
 			got := solution(tt.in.n, tt.in.r, tt.in.b)
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Fatalf("in: %+v, got: %d, want: %d", tt.in, got, tt.want)

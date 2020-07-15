@@ -8,6 +8,7 @@ import (
 )
 
 func TestSolution(t *testing.T) {
+	t.Parallel()
 	tests := []struct {
 		in   [3][3]int
 		want string
@@ -17,8 +18,7 @@ func TestSolution(t *testing.T) {
 		{in: [3][3]int{{0, 8, 8}, {0, 8, 8}, {0, 8, 8}}, want: "Yes"},
 	}
 	for i, tt := range tests {
-		i := i
-		tt := tt
+		i, tt := i, tt
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
 			t.Parallel()
 			got := solution(tt.in)

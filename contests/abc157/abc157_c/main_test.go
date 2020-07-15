@@ -8,6 +8,7 @@ import (
 )
 
 func TestSolution(t *testing.T) {
+	t.Parallel()
 	type in struct {
 		n, m   int
 		matrix [][]int
@@ -24,6 +25,7 @@ func TestSolution(t *testing.T) {
 	}
 	for i, c := range cases {
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
+			t.Parallel()
 			got := solution(c.in.n, c.in.m, c.in.matrix)
 			if got != c.want {
 				t.Errorf("in: %+v, got: %d, want: %d", c.in, got, c.want)

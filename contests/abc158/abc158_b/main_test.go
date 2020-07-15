@@ -24,8 +24,10 @@ var cases = []Case{
 }
 
 func TestSolution(t *testing.T) {
+	t.Parallel()
 	for i, c := range cases {
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
+			t.Parallel()
 			got := solution(c.in.n, c.in.a, c.in.b)
 			if got != c.want {
 				t.Errorf("in: %+v, got: %d, want: %d", c.in, got, c.want)

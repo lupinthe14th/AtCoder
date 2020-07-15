@@ -9,6 +9,7 @@ import (
 )
 
 func TestSolution(t *testing.T) {
+	t.Parallel()
 	type in struct {
 		n, m int
 		ab   [][]int
@@ -21,7 +22,9 @@ func TestSolution(t *testing.T) {
 		{in: in{n: 2, m: 5, ab: [][]int{{1, 2}, {2, 1}, {1, 2}, {2, 1}, {1, 2}}}, want: []int{5, 5}},
 	}
 	for i, tt := range tests {
+		i, tt := i, tt
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
+			t.Parallel()
 			got := solution(tt.in.n, tt.in.m, tt.in.ab)
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Fatalf("in: %v got: %v want: %v", tt.in, got, tt.want)
