@@ -8,6 +8,7 @@ import (
 )
 
 func TestSolution(t *testing.T) {
+	t.Parallel()
 	type in struct {
 		a, b, h, m float64
 	}

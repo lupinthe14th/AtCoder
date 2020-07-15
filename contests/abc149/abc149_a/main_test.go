@@ -19,6 +19,7 @@ var cases = []struct {
 }
 
 func TestSolution(t *testing.T) {
+	t.Parallel()
 	for _, tt := range cases {
 		t.Run(fmt.Sprint(tt.id), func(t *testing.T) {
 			got := solution(tt.input.s, tt.input.t)

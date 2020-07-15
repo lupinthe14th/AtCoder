@@ -8,6 +8,7 @@ import (
 )
 
 func TestSolution(t *testing.T) {
+	t.Parallel()
 	type in struct {
 		n int
 		s string
@@ -20,7 +21,9 @@ func TestSolution(t *testing.T) {
 		{in: in{n: 4, s: "IIDID"}, want: 2},
 	}
 	for i, tt := range cases {
+		i, tt := i, tt
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
+			t.Parallel()
 			got := solution(tt.in.n, tt.in.s)
 			if got != tt.want {
 				t.Errorf("in: %+v, got: %v, want: %v", tt.in, got, tt.want)

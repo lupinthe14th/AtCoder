@@ -8,15 +8,22 @@ import (
 )
 
 func TestSolution(t *testing.T) {
+	t.Parallel()
+	type in struct {
+		k, a, b int
+	}
+
 	var cases = []struct {
-		in   want int
+		in   in
+		want string
 	}{
-		{in: in{s: 4, w: 5}, want: "unsafe"},
-		{in: in{s: 10, w: 10}, want: "unsafe"},
+		{in: in{k: 7, a: 500, b: 600}, want: "OK"},
 	}
 	for i, tt := range cases {
+		i, tt := i, tt
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
-			got := solution(tt.in.s, tt.in.w)
+			t.Parallel()
+			got := solution(tt.in.k, tt.in.a, tt.in.b)
 			if got != tt.want {
 				t.Errorf("in: %+v, got: %v, want: %v", tt.in, got, tt.want)
 			}
@@ -36,5 +43,5 @@ func Example_main() {
 
 	main()
 
-	// Output: safe
+	// Output: NG
 }

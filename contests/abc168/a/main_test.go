@@ -8,6 +8,7 @@ import (
 )
 
 func TestSolution(t *testing.T) {
+	t.Parallel()
 	var cases = []struct {
 		in   int
 		want string

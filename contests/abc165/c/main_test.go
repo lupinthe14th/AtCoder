@@ -8,19 +8,23 @@ import (
 )
 
 func TestSolution(t *testing.T) {
+	t.Parallel()
 	type in struct {
-		a, b, n int
+		n, m, q int
+		matrix  [][]int
 	}
-
 	var cases = []struct {
 		in   in
 		want int
 	}{
-		{in: in{a: 5, b: 7, n: 4}, want: 2},
+		{in: in{n: 3, m: 4, q: 3, matrix: [][]int{{1, 3, 3, 100}, {1, 2, 2, 10}, {2, 3, 2, 10}}}, want: 110},
+		{in: in{n: 10, m: 10, q: 1, matrix: [][]int{{1, 10, 9, 1}}}, want: 1},
 	}
 	for i, tt := range cases {
+		i, tt := i, tt
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
-			got := solution(tt.in.a, tt.in.b, tt.in.n)
+			t.Parallel()
+			got := solution(tt.in.n, tt.in.m, tt.in.q, tt.in.matrix)
 			if got != tt.want {
 				t.Errorf("in: %+v, got: %v, want: %v", tt.in, got, tt.want)
 			}
@@ -33,12 +37,14 @@ func Example_main() {
 	inr, inw, _ := os.Pipe()
 	orgStdin := os.Stdin
 	inw.Write(c)
-	inw.Close()
 	os.Stdin = orgStdin
-	defer func() { os.Stdin = orgStdin }()
+	defer func() {
+		inw.Close()
+		os.Stdin = orgStdin
+	}()
 	os.Stdin = inr
 
 	main()
 
-	// Output: 9
+	// Output: 357500
 }

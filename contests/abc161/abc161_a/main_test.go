@@ -8,6 +8,7 @@ import (
 )
 
 func TestSolution(t *testing.T) {
+	t.Parallel()
 	type in struct {
 		x, y, z int
 	}
@@ -23,7 +24,9 @@ func TestSolution(t *testing.T) {
 		{in: in{x: 41, y: 59, z: 31}, want: out{a: 31, b: 41, c: 59}},
 	}
 	for i, tt := range cases {
+		i, tt := i, tt
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
+			t.Parallel()
 			a, b, c := solution(tt.in.x, tt.in.y, tt.in.z)
 			if a != tt.want.a && b != tt.want.b && c != tt.want.c {
 				t.Errorf("in: %+v, a: %d, b: %d, c: %d, want: %d", tt.in, a, b, c, tt.want)

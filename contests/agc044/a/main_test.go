@@ -9,6 +9,7 @@ import (
 )
 
 func TestSolution(t *testing.T) {
+	t.Parallel()
 	type in struct {
 		t      int
 		matrix [][]int

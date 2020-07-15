@@ -27,8 +27,11 @@ var cases = []Case{
 }
 
 func TestSolution(t *testing.T) {
+	t.Parallel()
 	for i, tt := range cases {
+		i, tt := i, tt
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
+			t.Parallel()
 			got, e := solution(tt.input)
 			if tt.want.e != nil && e == nil {
 				t.Errorf("%s, want.e: %s", e, tt.want.e)

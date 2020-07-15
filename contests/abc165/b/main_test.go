@@ -8,19 +8,18 @@ import (
 )
 
 func TestSolution(t *testing.T) {
-	type in struct {
-		k, a, b int
-	}
-
+	t.Parallel()
 	var cases = []struct {
-		in   in
-		want string
+		in, want int
 	}{
-		{in: in{k: 7, a: 500, b: 600}, want: "OK"},
+		{in: 103, want: 3},
+		{in: 1333333333, want: 1706},
 	}
 	for i, tt := range cases {
+		i, tt := i, tt
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
-			got := solution(tt.in.k, tt.in.a, tt.in.b)
+			t.Parallel()
+			got := solution(tt.in)
 			if got != tt.want {
 				t.Errorf("in: %+v, got: %v, want: %v", tt.in, got, tt.want)
 			}
@@ -40,5 +39,5 @@ func Example_main() {
 
 	main()
 
-	// Output: NG
+	// Output: 3760
 }

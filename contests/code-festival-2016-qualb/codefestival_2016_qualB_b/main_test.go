@@ -9,6 +9,7 @@ import (
 )
 
 func TestSolution(t *testing.T) {
+	t.Parallel()
 	type in struct {
 		n, a, b int
 		s       string
@@ -22,7 +23,9 @@ func TestSolution(t *testing.T) {
 		{in: in{n: 5, a: 2, b: 2, s: "ccccc"}, want: []string{"No", "No", "No", "No", "No"}},
 	}
 	for i, tt := range cases {
+		i, tt := i, tt
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
+			t.Parallel()
 			got := solution(tt.in.n, tt.in.a, tt.in.b, tt.in.s)
 			if !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("in: %+v, got: %v, want: %v", tt.in, got, tt.want)
