@@ -1,0 +1,23 @@
+package main
+
+import (
+	"fmt"
+)
+
+func solution(n int, a []int) int {
+	memo := make(map[int]int)
+	for i := range a {
+
+	}
+	return 0
+}
+
+func main() {
+	var n int
+	fmt.Scan(&n)
+	a := make([]int, n)
+	for i := range a {
+		fmt.Scan(&a[i])
+	}
+	fmt.Println(solution(n, a))
+}
