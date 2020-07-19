@@ -2,34 +2,23 @@ package main
 
 import (
 	"fmt"
-	"math"
 )
 
 func solution(n, k int) float64 {
 
-	memo := make([]float64, n+1)
-
-	for i := 1; i < n+1; i++ {
-		if i < k {
-			x := helper(i, k)
-			memo[i] = 1 / (float64(n) * math.Pow(2, x))
-		} else {
-			memo[i] = 1 / float64(n)
-		}
-	}
-
 	out := 0.0
 	for i := 1; i < n+1; i++ {
-		out += memo[i]
+		x := helper(i, k)
+		out += (1 / float64(n)) * x
 	}
 	return out
 }
 
 func helper(i, k int) float64 {
-	x, out := i, 0.0
+	x, out := i, 1.0
 	for k > x {
 		x *= 2
-		out++
+		out /= 2
 	}
 	return out
 }

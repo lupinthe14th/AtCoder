@@ -29,6 +29,7 @@ func TestSolution(t *testing.T) {
 		})
 	}
 }
+
 func TestHelper(t *testing.T) {
 	t.Parallel()
 	type in struct {
@@ -38,9 +39,9 @@ func TestHelper(t *testing.T) {
 		in   in
 		want float64
 	}{
-		{in: in{n: 1, k: 10}, want: 4.0},
-		{in: in{n: 2, k: 10}, want: 3.0},
-		{in: in{n: 3, k: 10}, want: 2.0},
+		{in: in{n: 1, k: 10}, want: 0.0625},
+		{in: in{n: 2, k: 10}, want: 0.125},
+		{in: in{n: 3, k: 10}, want: 0.25},
 	}
 	for i, tt := range tests {
 		i, tt := i, tt
