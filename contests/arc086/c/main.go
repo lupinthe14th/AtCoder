@@ -17,16 +17,14 @@ func solution(n, k int, a []int) int {
 		return 0
 	}
 
-	tmp := make([][]int, 0, l)
-	for key, val := range seen {
-		tmp = append(tmp, []int{key, val})
+	tmp := make([]int, 0, l)
+	for _, v := range seen {
+		tmp = append(tmp, v)
 	}
-	sort.SliceStable(tmp, func(i, j int) bool {
-		return tmp[i][1] < tmp[j][1]
-	})
+	sort.Ints(tmp)
 	out := 0
-	for i := range tmp[:l-k] {
-		out += tmp[i][1]
+	for i := 0; i < l-k; i++ {
+		out += tmp[i]
 	}
 	return out
 }
