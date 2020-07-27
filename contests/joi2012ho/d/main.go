@@ -9,7 +9,7 @@ import (
 func solution(n, m int, g [][3]int) int {
 	dp := make([][]int, n+1)
 	for i := range dp {
-		dp[i] = make([]int, n+1)
+		dp[i] = make([]int, i+2)
 	}
 	for i := 0; i < m; i++ {
 		x := g[i][0]
