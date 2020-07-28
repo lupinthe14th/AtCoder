@@ -5,18 +5,15 @@ import (
 )
 
 func solution(n int) int {
-	memo := make([]int, n+1)
-
-	for i := 1; i < n+1; i++ {
-		for j := 0; j < n+1; j++ {
-			if j%i == 0 {
-				memo[j]++
-			}
-		}
-	}
 	out := 0
 	for i := 1; i < n+1; i = i + 2 {
-		if memo[i] == 8 {
+		c := 0
+		for j := 1; j < n+1; j++ {
+			if i%j == 0 {
+				c++
+			}
+		}
+		if c == 8 {
 			out++
 		}
 	}
