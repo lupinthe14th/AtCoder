@@ -5,12 +5,16 @@ import (
 )
 
 func solution(a, b, c, x, y int) int {
-	out := 1 << 31
-
-	for i := 0; i <= 1e5; i++ {
-		out = min(out, i*2*c+max(0, x-i)*a+max(0, y-i)*b)
+	d := a*x + b*y
+	s := 0
+	if x < y {
+		s = 2*c*x + ((y - x) * b)
+	} else {
+		s = 2*c*y + ((x - y) * a)
 	}
-	return out
+	p := c * 2 * max(x, y)
+
+	return min(p, min(d, s))
 }
 
 func min(x, y int) int {
@@ -25,7 +29,6 @@ func max(x, y int) int {
 	}
 	return y
 }
-
 func main() {
 	var a, b, c, x, y int
 	fmt.Scan(&a, &b, &c, &x, &y)
