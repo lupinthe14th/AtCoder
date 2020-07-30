@@ -2,25 +2,43 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"path/filepath"
 	"testing"
 )
 
-var cases = []struct {
-	id    int
-	input int
-	want  bool
-}{
-	{id: 1, input: 615, want: true},
-	{id: 2, input: 217, want: false},
-}
+func TestSolution(t *testing.T) {
+	t.Parallel()
+	var tests = []struct {
+		in   int
+		want bool
+	}{
+		{in: 615, want: true},
+		{in: 217, want: false},
+	}
 
-func TestOneOOToOneOFive(t *testing.T) {
-	for _, tt := range cases {
-		t.Run(fmt.Sprint(tt.id), func(t *testing.T) {
-			got := oneOOToOneOFive(tt.input)
+	for i, tt := range tests {
+		i, tt := i, tt
+		t.Run(fmt.Sprint(i), func(t *testing.T) {
+			t.Parallel()
+			got := solution(tt.in)
 			if got != tt.want {
-				t.Errorf("%t, want: %t", got, tt.want)
+				t.Fatalf("in: %v got %v want: %v", tt.in, got, tt.want)
 			}
 		})
 	}
+}
+
+func Example_main() {
+	fd, _ := os.Open(filepath.Join("testdata", "input.txt"))
+	orgStdin := os.Stdin
+	os.Stdin = fd
+	defer func() {
+		os.Stdin = orgStdin
+		fd.Close()
+	}()
+
+	main()
+
+	// Output: 0
 }
