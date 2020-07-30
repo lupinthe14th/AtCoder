@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// seen: https://atcoder.jp/contests/sumitrust2019/submissions/8695967
 func solution(n int, s string) int {
 	out := 0
 
