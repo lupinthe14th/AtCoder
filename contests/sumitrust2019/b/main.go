@@ -5,7 +5,7 @@ import (
 	"math"
 )
 
-func taxRate(n int) (int, string) {
+func solution(n int) (int, string) {
 	tax := 1.08
 	tmp := float64(n) / tax
 
@@ -23,7 +23,7 @@ func taxRate(n int) (int, string) {
 func main() {
 	var n int
 	fmt.Scan(&n)
-	c, err := taxRate(n)
+	c, err := solution(n)
 	if err != "" {
 		fmt.Println(err)
 	} else {
