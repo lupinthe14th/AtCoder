@@ -8,10 +8,10 @@ import (
 func solution(n int, a [][2]int) int {
 	out := 0
 
-	memo := make(map[[2]int]int)
+	memo := make(map[[2]int]bool)
 
 	for i := range a {
-		memo[a[i]] = i
+		memo[a[i]] = true
 	}
 
 	sort.SliceStable(a, func(i, j int) bool {
@@ -25,13 +25,11 @@ func solution(n int, a [][2]int) int {
 	helper = func(p, q [2]int) {
 		x := abs(p[0] - q[0])
 		y := abs(p[1] - q[1])
-		s1 := [2]int{q[0] + y, q[1] + x}
-		r1 := [2]int{p[0] + y, p[1] + x}
+		s := [2]int{q[0] + y, q[1] + x}
+		r := [2]int{p[0] + y, p[1] + x}
 		area := x*x + y*y
-		if _, ok := memo[s1]; ok {
-			if _, ok := memo[r1]; ok {
-				out = max(out, area)
-			}
+		if memo[s] && memo[r] {
+			out = max(out, area)
 		}
 	}
 
