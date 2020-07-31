@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sort"
 )
 
 func solution(n int, a [][2]int) int {
@@ -12,22 +13,23 @@ func solution(n int, a [][2]int) int {
 	for i := range a {
 		memo[a[i]] = i
 	}
+
+	sort.SliceStable(a, func(i, j int) bool {
+		if a[i][0] == a[j][0] {
+			return a[i][1] < a[j][1]
+		}
+		return a[i][0] < a[j][0]
+	})
 	var helper func(p, q [2]int)
 
 	helper = func(p, q [2]int) {
 		x := abs(p[0] - q[0])
 		y := abs(p[1] - q[1])
 		s1 := [2]int{q[0] + y, q[1] + x}
-		s2 := [2]int{q[0] - y, q[1] - x}
 		r1 := [2]int{p[0] + y, p[1] + x}
-		r2 := [2]int{p[0] - y, p[1] - x}
 		area := x*x + y*y
 		if _, ok := memo[s1]; ok {
 			if _, ok := memo[r1]; ok {
-				out = max(out, area)
-			}
-		} else if _, ok := memo[s2]; ok {
-			if _, ok := memo[r2]; ok {
 				out = max(out, area)
 			}
 		}
