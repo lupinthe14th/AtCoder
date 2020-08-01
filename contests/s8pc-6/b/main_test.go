@@ -10,21 +10,21 @@ import (
 func TestSolution(t *testing.T) {
 	t.Parallel()
 	type in struct {
-		n  int
-		ab [][2]int
+		n    int
+		a, b []int
 	}
 	tests := []struct {
 		in   in
 		want int64
 	}{
-		{in: in{n: 3, ab: [][2]int{{5, 7}, {2, 6}, {8, 10}}}, want: 18},
-		{in: in{n: 5, ab: [][2]int{{1, 71}, {43, 64}, {13, 35}, {14, 54}, {79, 85}}}, want: 334},
+		{in: in{n: 3, a: []int{5, 2, 8}, b: []int{7, 6, 10}}, want: 18},
+		{in: in{n: 5, a: []int{1, 43, 13, 14, 79}, b: []int{71, 64, 35, 54, 85}}, want: 334},
 	}
 	for i, tt := range tests {
 		i, tt := i, tt
 		t.Run(fmt.Sprint(i), func(t *testing.T) {
 			t.Parallel()
-			got := solution(tt.in.n, tt.in.ab)
+			got := solution(tt.in.n, tt.in.a, tt.in.b)
 			if got != tt.want {
 				t.Fatalf("in: %v got: %v want: %v", tt.in, got, tt.want)
 			}
