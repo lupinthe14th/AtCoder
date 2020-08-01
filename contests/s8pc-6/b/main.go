@@ -2,51 +2,50 @@ package main
 
 import (
 	"fmt"
-	"sort"
 )
 
-func solution(n int, ab [][2]int) int64 {
-	in := make([]int, n)
-	out := make([]int, n)
-	for i := range ab {
-		in[i] = ab[i][0]
-		out[i] = ab[i][1]
-	}
-	sort.Ints(in)
-	sort.Ints(out)
-	gateIn := int64(in[(n-1)/2])
-	gateOut := int64(out[(n-1)/2])
-
-	var ans int64
-	for i := range ab {
-		var sum, a, b int64
-		a = int64(ab[i][0])
-		b = int64(ab[i][1])
-		switch {
-		case gateIn <= a && b <= gateOut:
-			sum = gateOut - gateIn
-		case a < gateIn && b <= gateOut:
-			sum = 2*(gateIn-a) + gateOut - gateIn
-		case gateIn <= a && gateOut < b:
-			sum = gateOut - gateIn + 2*(b-gateOut)
-		case a < gateIn && gateOut < b:
-			sum = gateOut - gateIn + 2*(gateIn-a) + 2*(b-gateOut)
-		case a < gateIn && b < gateIn:
-			sum = 2*(gateIn-a) + gateOut - gateIn
-		case gateOut < a && gateOut < b:
-			sum = gateOut - gateIn + 2*(b-gateOut)
+func solution(n int, a, b []int) int64 {
+	var out int64 = 1<<63 - 1
+	min := func(x, y int64) int64 {
+		if x < y {
+			return x
 		}
-		ans += sum
+		return y
 	}
-	return ans
+
+	abs := func(x int) int64 {
+		x64 := int64(x)
+		if x64 < 0 {
+			return -x64
+		}
+		return x64
+	}
+	solve := func(s, t int) int64 {
+		var out int64
+		for i := 0; i < n; i++ {
+			out += abs(s - a[i])
+			out += abs(a[i] - b[i])
+			out += abs(b[i] - t)
+		}
+		return out
+	}
+
+	for i := range a {
+		for j := range b {
+			out = min(out, solve(a[i], b[j]))
+		}
+	}
+
+	return out
 }
 
 func main() {
 	var n int
 	fmt.Scan(&n)
-	ab := make([][2]int, n)
+	a := make([]int, n)
+	b := make([]int, n)
 	for i := 0; i < n; i++ {
-		fmt.Scan(&ab[i][0], &ab[i][1])
+		fmt.Scan(&a[i], &b[i])
 	}
-	fmt.Println(solution(n, ab))
+	fmt.Println(solution(n, a, b))
 }
