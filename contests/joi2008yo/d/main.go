@@ -26,7 +26,7 @@ func solution(m, n int, p, q [][2]int) [2]int {
 		dx := q[i][0] - p0x
 		dy := q[i][1] - p0y
 		flag := false
-		for j := range p {
+		for j := 1; j < m; j++ {
 			x := p[j][0] + dx
 			y := p[j][1] + dy
 			if !memo[[2]int{x, y}] {
