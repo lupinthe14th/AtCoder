@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 )
 
 func solution(m, n int, p, q [][2]int) [2]int {
@@ -35,17 +37,18 @@ func solution(m, n int, p, q [][2]int) [2]int {
 }
 
 func main() {
+	r := bufio.NewReader(os.Stdin)
 	var m int
-	fmt.Scan(&m)
+	fmt.Fscan(r, &m)
 	p := make([][2]int, m)
 	for i := range p {
-		fmt.Scan(&p[i][0], &p[i][1])
+		fmt.Fscan(r, &p[i][0], &p[i][1])
 	}
 	var n int
-	fmt.Scan(&n)
+	fmt.Fscan(r, &n)
 	q := make([][2]int, n)
 	for i := range q {
-		fmt.Scan(&q[i][0], &q[i][1])
+		fmt.Fscan(r, &q[i][0], &q[i][1])
 	}
 	ans := solution(m, n, p, q)
 	fmt.Printf("%v %v\n", ans[0], ans[1])
