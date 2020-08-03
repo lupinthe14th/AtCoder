@@ -4,9 +4,23 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"sort"
 )
 
 func solution(m, n int, p, q [][2]int) [2]int {
+	sort.SliceStable(p, func(i, j int) bool {
+		if p[i][0] == p[j][0] {
+			return p[i][1] < p[j][1]
+		}
+		return p[i][0] < p[j][0]
+	})
+	sort.SliceStable(q, func(i, j int) bool {
+		if q[i][0] == q[j][0] {
+			return q[i][1] < q[j][1]
+		}
+		return q[i][0] < q[j][0]
+	})
+
 	memo := make(map[[2]int]bool)
 	for i := range q {
 		memo[q[i]] = true
