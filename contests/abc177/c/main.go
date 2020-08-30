@@ -9,13 +9,12 @@ import (
 func solution(n int, a []int) int {
 	const MOD = 1e9 + 7
 	out := 0
-	cur := make([]int, n+1)
-	cur[0] = a[0]
+	cum := make([]int, n+1)
 	for i := 0; i < n; i++ {
-		cur[i+1] = a[i] + cur[i]
+		cum[i+1] = a[i] + cum[i]
 	}
 	for i := 0; i < n; i++ {
-		sum := (cur[n] - cur[i+1]) % MOD
+		sum := (cum[n] - cum[i+1]) % MOD
 		out += a[i] * sum
 		out %= MOD
 	}
